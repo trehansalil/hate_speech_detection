@@ -1,5 +1,14 @@
 # Hate Speech Detection
 
+### Project Workflows
+- components
+- configuration
+- constants
+- config_entity
+- artifact_entity
+- pipeline
+- app.py
+
 ### Setup Methodology for the project
 - Environment Setup
 ```bash
