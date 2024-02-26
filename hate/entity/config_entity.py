@@ -20,3 +20,17 @@ class DataValidationconfig:
         self.RAW_DATA_DIR = RAW_DATA_DIR
         self.IMBALANCE_DATA_COLUMNS = IMBALANCE_DATA_COLUMNS
         self.RAW_DATA_COLUMNS = RAW_DATA_COLUMNS
+        
+@dataclass        
+class DataTransformationconfig:
+    def __init__(self):        
+        self.DATA_TRANSFORMATION_ARTIFACTS_DIR: str = os.path.join(os.getcwd(), ARTIFACTS_DIR, DATA_TRANSFORMATION_ARTIFACTS_DIR)
+        self.TRANSFORMED_FILE_PATH = os.path.join(self.DATA_TRANSFORMATION_ARTIFACTS_DIR, TRANSFORMED_FILE_NAME)        
+        self.ID = ID
+        self.AXIS = AXIS   
+        self.DROP_COLUMNS = DROP_COLUMNS
+        self.CLASS = CLASS
+        self.MAPPING_CLASS_COL_DICT = MAPPING_CLASS_COL_DICT   
+        self.LABEL = LABEL    
+        self.TWEET = TWEET    
+        self.INPLACE = INPLACE              

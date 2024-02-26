@@ -5,6 +5,6 @@ setup(
     version='0.0.1',
     author='Salil Trehan',
     author_email='trehansalil1@gmail.com',
-    paclages=find_packages(),
+    packages=find_packages(),
     install_requires=[],
 )

@@ -23,3 +23,16 @@ IMBALANCE_DATA_DIR = os.path.join(ARTIFACTS_DIR, DATA_INGESTION_ARTIFACTS_DIR, D
 RAW_DATA_DIR = os.path.join(ARTIFACTS_DIR, DATA_INGESTION_ARTIFACTS_DIR, DATA_INGESTION_RAW_DATA_DIR)
 IMBALANCE_DATA_COLUMNS = ['id', 'label', 'tweet']
 RAW_DATA_COLUMNS = ['Unnamed: 0', 'count', 'hate_speech', 'offensive_language',	'neither class', 'tweet']
+
+# Data transformation constants
+DATA_TRANSFORMATION_ARTIFACTS_DIR = "DataTransformationArtifacts"
+TRANSFORMED_FILE_NAME = "final.csv"
+DATA_DIR = "data"
+ID = 'id'
+AXIS = 1
+DROP_COLUMNS = ['Unnamed: 0', 'count', 'hate_speech', 'offensive_language',	'neither', 'class']
+CLASS = 'class'
+MAPPING_CLASS_COL_DICT = {0: 1, 1:1, 2: 0}
+LABEL = 'label'
+TWEET = 'tweet'
+INPLACE = True

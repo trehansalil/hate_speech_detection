@@ -9,3 +9,7 @@ class DataIngestionArtifacts:
 class DataValidationArtifacts:    
     imbalance_data_valid: bool
     raw_data_valid: bool
+    
+@dataclass    
+class DataTransformationArtifacts:    
+    transformation_data_file_path: str  
