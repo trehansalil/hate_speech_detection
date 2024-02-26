@@ -1,11 +1,10 @@
 # Hate Speech Detection
 
 ### Project Workflows
-- components
-- configuration
 - constants
 - config_entity
 - artifact_entity
+- components
 - pipeline
 - app.py
 
