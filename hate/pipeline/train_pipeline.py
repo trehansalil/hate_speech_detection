@@ -5,15 +5,22 @@ from hate.exception import CustomException
 from hate.components.data_ingestion import DataIngestion
 from hate.components.data_validation import DataValidation
 from hate.components.data_transformation import DataTransformation
-from hate.entity.config_entity import DataIngestionconfig, DataValidationconfig, DataTransformationconfig
-from hate.entity.artifact_entity import DataIngestionArtifacts, DataValidationArtifacts, DataTransformationArtifacts
-
+from hate.entity.config_entity import (DataIngestionConfig, 
+                                       DataValidationConfig, 
+                                       DataTransformationConfig, 
+                                       ModelTrainerConfig)
+from hate.entity.artifact_entity import (DataIngestionArtifacts, 
+                                         DataValidationArtifacts, 
+                                         DataTransformationArtifacts, 
+                                         ModelTrainerArtifacts)
+from hate.components.model_trainer import ModelTrainer
 
 class TrainingPipeline:
     def __init__(self):
-        self.data_ingestion_config = DataIngestionconfig()
-        self.data_validation_config = DataValidationconfig()
-        self.data_transformation_config = DataTransformationconfig()
+        self.data_ingestion_config = DataIngestionConfig()
+        self.data_validation_config = DataValidationConfig()
+        self.data_transformation_config = DataTransformationConfig()
+        self.model_trainer_config = ModelTrainerConfig()
         
     def start_data_ingestion(self) -> DataIngestionArtifacts:
         current_function_name = inspect.stack()[0][3]
@@ -52,10 +59,26 @@ class TrainingPipeline:
             )
             
             data_transformation_artifacts = data_transformation.initiate_data_transformation()
-            logging.info(f"Data Transformation using the {current_function_name} method of {self.__class__.__name__} class")
+            logging.info(f"Data Transformation done using the {current_function_name} method of {self.__class__.__name__} class")
             return data_transformation_artifacts
         except Exception as e:
-            raise CustomException(e, sys) from e             
+            raise CustomException(e, sys) from e    
+
+    def start_model_trainer(self, data_transformation_artifacts: DataTransformationArtifacts) -> ModelTrainerArtifacts:
+        current_function_name = inspect.stack()[0][3]
+        try:
+            logging.info(f"Starting Model Training using the {current_function_name} method of {self.__class__.__name__} class")
+            
+            model_trainer = ModelTrainer(
+                data_transformation_artifacts = data_transformation_artifacts, 
+                model_trainer_config = self.model_trainer_config
+            )
+            
+            model_trainer_artifacts = model_trainer.initiate_model_trainer()
+            logging.info(f"Model Training Completed using the {current_function_name} method of {self.__class__.__name__} class")
+            return model_trainer_artifacts
+        except Exception as e:
+            raise CustomException(e, sys) from e                    
              
     def run_pipeline(self):
         current_function_name = inspect.stack()[0][3]
@@ -69,8 +92,12 @@ class TrainingPipeline:
             data_validation_artifacts = self.start_data_validation()
  
             logging.info(f"Starting Transformation using the {current_function_name} method of {self.__class__.__name__} class")            
-            data_validation_artifacts = self.start_data_transformation(data_ingestion_artifacts=data_ingestion_artifacts, 
-                                                                   data_validation_artifacts=data_validation_artifacts)           
+            data_transformation_artifacts = self.start_data_transformation(data_ingestion_artifacts=data_ingestion_artifacts, 
+                                                                   data_validation_artifacts=data_validation_artifacts)
+            
+            logging.info(f"Starting Model Training using the {current_function_name} method of {self.__class__.__name__} class")            
+            model_trainer_artifacts = self.start_model_trainer(data_transformation_artifacts=data_transformation_artifacts)
+                                   
             logging.info(f"Exited the {current_function_name} method of {self.__class__.__name__} class")
         except Exception as e:
             raise CustomException(e, sys) from e           

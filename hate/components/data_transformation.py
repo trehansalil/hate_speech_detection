@@ -10,12 +10,12 @@ from sklearn.model_selection import train_test_split
 nltk.download('stopwords')
 from hate.logger import logging
 from hate.exception import CustomException
-from hate.entity.config_entity import DataTransformationconfig
+from hate.entity.config_entity import DataTransformationConfig
 from hate.entity.artifact_entity import DataTransformationArtifacts, DataIngestionArtifacts, DataValidationArtifacts
 
 
 class DataTransformation:
-    def __init__(self, data_transformation_config: DataTransformationconfig, data_ingestion_artifacts: DataIngestionArtifacts, data_validation_artifacts: DataValidationArtifacts):
+    def __init__(self, data_transformation_config: DataTransformationConfig, data_ingestion_artifacts: DataIngestionArtifacts, data_validation_artifacts: DataValidationArtifacts):
         self.data_transformation_config = data_transformation_config
         self.data_ingestion_artifacts = data_ingestion_artifacts
         self.data_validation_artifacts = data_validation_artifacts
@@ -55,7 +55,8 @@ class DataTransformation:
         current_function_name = inspect.stack()[0][3]
         logging.info(f"Concatenating the data using the {current_function_name} method of {self.__class__.__name__} class")
         try:
-            df = pd.concat([self.imbalance_data_cleaning(), self.raw_data_cleaning()])
+            df = pd.concat([self.imbalance_data_cleaning()[[self.data_transformation_config.LABEL, self.data_transformation_config.TWEET]], 
+                            self.raw_data_cleaning()[[self.data_transformation_config.LABEL, self.data_transformation_config.TWEET]]])
             print(df.head())
             
             logging.info(f"Returned the concatenated data using the {current_function_name} method of {self.__class__.__name__} class")

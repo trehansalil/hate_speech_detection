@@ -3,7 +3,7 @@ from hate.constants import *
 import os
 
 @dataclass
-class DataIngestionconfig:
+class DataIngestionConfig:
     def __init__(self):
         self.BUCKET_NAME = BUCKET_NAME
         self.ZIP_FILE_NAME = ZIP_FILE_NAME
@@ -14,7 +14,7 @@ class DataIngestionconfig:
         self.ZIP_FILE_PATH = os.path.join(self.DATA_INGESTION_ARTIFACTS_DIR, self.ZIP_FILE_NAME)
 
 @dataclass        
-class DataValidationconfig:
+class DataValidationConfig:
     def __init__(self):        
         self.IMBALANCE_DATA_DIR = IMBALANCE_DATA_DIR
         self.RAW_DATA_DIR = RAW_DATA_DIR
@@ -22,7 +22,7 @@ class DataValidationconfig:
         self.RAW_DATA_COLUMNS = RAW_DATA_COLUMNS
         
 @dataclass        
-class DataTransformationconfig:
+class DataTransformationConfig:
     def __init__(self):        
         self.DATA_TRANSFORMATION_ARTIFACTS_DIR: str = os.path.join(os.getcwd(), ARTIFACTS_DIR, DATA_TRANSFORMATION_ARTIFACTS_DIR)
         self.TRANSFORMED_FILE_PATH = os.path.join(self.DATA_TRANSFORMATION_ARTIFACTS_DIR, TRANSFORMED_FILE_NAME)        
@@ -34,3 +34,20 @@ class DataTransformationconfig:
         self.LABEL = LABEL    
         self.TWEET = TWEET    
         self.INPLACE = INPLACE              
+        
+@dataclass        
+class ModelTrainerConfig:
+    def __init__(self):        
+        self.MODEL_TRAINER_ARTIFACTS_DIR: str = os.path.join(os.getcwd(), ARTIFACTS_DIR, MODEL_TRAINER_ARTIFACTS_DIR, TRAINED_MODEL_DIR)
+        self.TRANSFORMED_FILE_PATH = os.path.join(self.MODEL_TRAINER_ARTIFACTS_DIR, TRAINED_MODEL_NAME)  
+        self.X_TEST_FILE_NAME = os.path.join(self.MODEL_TRAINER_ARTIFACTS_DIR, X_TEST_FILE_NAME)
+        self.Y_TEST_FILE_NAME = os.path.join(self.MODEL_TRAINER_ARTIFACTS_DIR, Y_TEST_FILE_NAME)      
+        self.X_TRAIN_FILE_NAME = os.path.join(self.MODEL_TRAINER_ARTIFACTS_DIR, X_TRAIN_FILE_NAME)  
+        self.RANDOM_STATE = RANDOM_STATE   
+        self.EPOCH = EPOCH
+        self.VALIDATION_SPLIT = VALIDATION_SPLIT
+        self.MAX_WORDS = MAX_WORDS   
+        self.MAX_LEN = MAX_LEN    
+        self.METRICS = METRICS    
+        self.ACTIVATION = ACTIVATION     
+        self.BATCH_SIZE = BATCH_SIZE             

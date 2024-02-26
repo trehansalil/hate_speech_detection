@@ -4,12 +4,12 @@ import inspect
 import pandas as pd
 from hate.logger import logging
 from hate.exception import CustomException
-from hate.entity.config_entity import DataValidationconfig
+from hate.entity.config_entity import DataValidationConfig
 from hate.entity.artifact_entity import DataValidationArtifacts
 
 
 class DataValidation:
-    def __init__(self, data_validation_config: DataValidationconfig):
+    def __init__(self, data_validation_config: DataValidationConfig):
         self.data_validation_config = data_validation_config
         
     def get_data_from_artifacts(self):
