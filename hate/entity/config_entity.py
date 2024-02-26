@@ -38,11 +38,11 @@ class DataTransformationConfig:
 @dataclass        
 class ModelTrainerConfig:
     def __init__(self):        
-        self.MODEL_TRAINER_ARTIFACTS_DIR: str = os.path.join(os.getcwd(), ARTIFACTS_DIR, MODEL_TRAINER_ARTIFACTS_DIR, TRAINED_MODEL_DIR)
-        self.TRANSFORMED_FILE_PATH = os.path.join(self.MODEL_TRAINER_ARTIFACTS_DIR, TRAINED_MODEL_NAME)  
-        self.X_TEST_FILE_NAME = os.path.join(self.MODEL_TRAINER_ARTIFACTS_DIR, X_TEST_FILE_NAME)
-        self.Y_TEST_FILE_NAME = os.path.join(self.MODEL_TRAINER_ARTIFACTS_DIR, Y_TEST_FILE_NAME)      
-        self.X_TRAIN_FILE_NAME = os.path.join(self.MODEL_TRAINER_ARTIFACTS_DIR, X_TRAIN_FILE_NAME)  
+        self.TRAINED_MODEL_DIR: str = os.path.join(os.getcwd(), ARTIFACTS_DIR, MODEL_TRAINER_ARTIFACTS_DIR, TRAINED_MODEL_DIR)
+        self.TRAINED_MODEL_PATH = os.path.join(self.TRAINED_MODEL_DIR, TRAINED_MODEL_NAME)  
+        self.X_TEST_FILE_NAME = os.path.join(self.TRAINED_MODEL_DIR, X_TEST_FILE_NAME)
+        self.Y_TEST_FILE_NAME = os.path.join(self.TRAINED_MODEL_DIR, Y_TEST_FILE_NAME)      
+        self.X_TRAIN_FILE_NAME = os.path.join(self.TRAINED_MODEL_DIR, X_TRAIN_FILE_NAME)  
         self.RANDOM_STATE = RANDOM_STATE   
         self.EPOCH = EPOCH
         self.VALIDATION_SPLIT = VALIDATION_SPLIT
