@@ -22,7 +22,7 @@ DATA_INGESTION_RAW_DATA_DIR = "raw_data.csv"
 IMBALANCE_DATA_DIR = os.path.join(ARTIFACTS_DIR, DATA_INGESTION_ARTIFACTS_DIR, DATA_INGESTION_IMBALANCE_DATA_DIR)
 RAW_DATA_DIR = os.path.join(ARTIFACTS_DIR, DATA_INGESTION_ARTIFACTS_DIR, DATA_INGESTION_RAW_DATA_DIR)
 IMBALANCE_DATA_COLUMNS = ['id', 'label', 'tweet']
-RAW_DATA_COLUMNS = ['Unnamed: 0', 'count', 'hate_speech', 'offensive_language',	'neither class', 'tweet']
+RAW_DATA_COLUMNS = ['Unnamed: 0', 'count', 'hate_speech', 'offensive_language',	'neither', 'class', 'tweet']
 
 # Data transformation constants
 DATA_TRANSFORMATION_ARTIFACTS_DIR = "DataTransformationArtifacts"
@@ -56,3 +56,13 @@ MAX_LEN = 300
 LOSS = 'binary_crossentropy'
 METRICS = ['accuracy']
 ACTIVATION = 'sigmoid'
+
+# Model Evaluation constants
+MODEL_EVALUATION_ARTIFACTS_DIR = "ModelEvaluationArtifacts"
+BEST_MODEL_DIR = "best_Model"
+MODEL_EVALUATION_FILE_NAME = 'loss.csv'
+
+
+MODEL_NAME = 'model.h5'
+APP_HOST = '0.0.0.0'
+APP_PORT = 8080

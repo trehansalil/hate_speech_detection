@@ -37,6 +37,8 @@ class DataValidation:
         if set1 == set2:
             return True
         else:
+            print(list1)
+            print(list2)
             return False
 
     def validate_data(self):
