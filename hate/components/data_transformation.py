@@ -15,10 +15,9 @@ from hate.entity.artifact_entity import DataTransformationArtifacts, DataIngesti
 
 
 class DataTransformation:
-    def __init__(self, data_transformation_config: DataTransformationConfig, data_ingestion_artifacts: DataIngestionArtifacts, data_validation_artifacts: DataValidationArtifacts):
+    def __init__(self, data_transformation_config: DataTransformationConfig, data_ingestion_artifacts: DataIngestionArtifacts):
         self.data_transformation_config = data_transformation_config
         self.data_ingestion_artifacts = data_ingestion_artifacts
-        self.data_validation_artifacts = data_validation_artifacts
         
     def imbalance_data_cleaning(self):
         current_function_name = inspect.stack()[0][3]
