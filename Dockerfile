@@ -15,4 +15,6 @@ RUN mkdir -p /usr/local/gcloud \
 
 ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
 
+CMD ["bash", "kill_docker.sh"]
+
 CMD ["python3", "app.py"]
