@@ -16,7 +16,6 @@ sudo usermod -aG docker $USER
 newgrp docker
 
 
-
 # Start configuration of self-hosted machine
 # Download the launch agent binary and verify the checksum
 mkdir configurations
